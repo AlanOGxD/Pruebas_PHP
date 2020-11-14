@@ -24,7 +24,7 @@ if(mysqli_num_rows($resultado)>0){
            <th>Semestre</th> 
            <th>Carrera</th> 
         </tr>
-
+ 
     <?php
     
     while($fila=mysqli_fetch_assoc($resultado)){

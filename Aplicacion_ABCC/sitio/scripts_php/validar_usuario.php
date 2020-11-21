@@ -17,7 +17,7 @@
         echo $u_cifrado;
 
         //$sql = "SELECT * FROM usuarios WHERE usuario='$u_cifrado' AND password='$p_cifrado'";
-        $sql = "SELECT * FROM usuarios WHERE usuario='$u' AND password='$p'";
+        $sql = "SELECT * FROM usuarios WHERE usuario='$u_cifrado' AND password='$p_cifrado'";
         $res = mysqli_query($conexion, $sql);
 
         if(mysqli_num_rows($res)==1){

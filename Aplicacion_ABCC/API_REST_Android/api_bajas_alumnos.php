@@ -16,7 +16,7 @@
 
                 $nc = $datos['nc'];
 
-                $sql = "DELETE FROM alumnos WHERE  num_control= $nc";
+                $sql = "DELETE FROM alumnos WHERE num_control= '$nc'";
 
                 $res = mysqli_query($conexion, $sql);
 
@@ -26,14 +26,16 @@
                     $respuesta['exito'] = true;
                     $respuesta['mensaje'] = "Se elimino correctamente";
                     $cad = json_encode($respuesta);
-                    var_dump($cad);
+                    echo $cad;
+                    //var_dump($cad);
                     //echo $cad;
-                }else{
+                } else {
                     //todo mal
                     $respuesta['fracaso'] = false;
                     $respuesta['mensaje'] = "Algo salio mal";
                     $cad = json_encode($respuesta);
-                    var_dump($cad);
+                    echo $cad;
+                    //var_dump($cad);
                     //echo $cad;
                 }
         }

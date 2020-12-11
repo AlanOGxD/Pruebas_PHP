@@ -6,14 +6,14 @@
     $conexion = $con->getConexion();
 
     //var_dump($conexion);
-
+    
     if($_SERVER['REQUEST_METHOD'] =='POST'){
         $cadena_JSON = file_get_contents('php://input'); //Preparar PHP para recibir informacion a traves de HTTP
         if($cadena_JSON == false){
             echo "No hay cadena JSON";
         }else{
         $datos = json_decode($cadena_JSON, true);
-
+        
                 $nc = $datos['nc'];
                 $nom = $datos['n'];
                 $priap = $datos['pa'];
@@ -22,25 +22,25 @@
                 $sem = $datos['s'];
                 $carr = $datos['c'];
 
-                $sql = "UPDATE alumnos set nombre=$nom, primer_ap=$priap, segundo_ap=$segap, edad= $edad, semestre=$sem, carrera=$carr where num_control=$nc";
-
-                $res = mysqli_query($conexion, $sql);
-
+               $sql = "UPDATE alumnos SET nombre='$nom', primer_ap='$priap', segundo_ap='$segap', edad= '$edad', semestre='$sem', carrera='$carr' WHERE num_control='$nc'";// SET SQL_SAFE_UPDATES = 0
+                //echo $sql;
+                $res = mysqli_query($conexion,$sql);
+                
                 $respuesta = array();
                 if($res){
                     //todo bien
                     $respuesta['exito'] = true;
                     $respuesta['mensaje'] = "Modificacion correcta";
                     $cad = json_encode($respuesta);
-                    var_dump($cad);
-                    //echo $cad;
+                    //var_dump($cad);
+                    echo $cad;
                 }else{
                     //todo mal
-                    $respuesta['fracaso'] = false;
+                    $respuesta['exito'] = false;
                     $respuesta['mensaje'] = "Modificacion INCORRECTA";
                     $cad = json_encode($respuesta);
-                    var_dump($cad);
-                    //echo $cad;
+                    //var_dump($cad);
+                    echo $cad;
                 }
         }
 

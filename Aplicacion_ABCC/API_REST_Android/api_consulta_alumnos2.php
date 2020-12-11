@@ -9,17 +9,18 @@
 
     if($_SERVER['REQUEST_METHOD'] =='POST'){
         $cadena_JSON = file_get_contents('php://input'); //Preparar PHP para recibir informacion a traves de HTTP
-       /* if($cadena_JSON == false){
+       if($cadena_JSON == false){
             echo "No hay cadena JSON";
-        }else{*/
-        $filtro = json_decode($cadena_JSON, true);
+        }else{
+            $datos = json_decode($cadena_JSON, true);
 
-                $sql = "SELECT * FROM alumnos";
+                $dato = $datos['n'];                
 
-                //var_dump($res);
+                //$sql = "SELECT * FROM alumnos where num_control like %'$dato'% OR nombre like %'$dato'% OR primer_ap like %'$dato'%";
+               
+                $sql = "SELECT * FROM alumnos where num_control like '%$dato%' OR nombre like '%$dato%' OR primer_ap like '%$dato%'";
                 $res = mysqli_query($conexion, $sql);
-
-            
+               
                 $datos['alumnos'] = array();
                 if($res){
                     //todo bien
@@ -39,8 +40,8 @@
                     }
 
                     echo json_encode($datos);
-
-                }else{
+                }
+                else{
                     //todo mal
                     $respuesta['exito'] = false;
                     $respuesta['mensaje'] = "ERROR en la insercion";
@@ -48,7 +49,7 @@
                     //var_dump($cad);
                     echo $cad;
                 }
-        //}
+        }
 
        
 

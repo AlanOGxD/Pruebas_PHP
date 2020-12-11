@@ -32,15 +32,15 @@
                     $respuesta['exito'] = true;
                     $respuesta['mensaje'] = "Insercion correcta";
                     $cad = json_encode($respuesta);
-                    var_dump($cad);
-                    //echo $cad;
+                    //var_dump($cad);
+                    echo $cad;
                 }else{
                     //todo mal
                     $respuesta['exito'] = false;
                     $respuesta['mensaje'] = "ERROR en la insercion";
                     $cad = json_encode($respuesta);
-                    var_dump($cad);
-                    //echo $cad;
+                    //var_dump($cad);
+                    echo $cad;
                 }
         }
 
